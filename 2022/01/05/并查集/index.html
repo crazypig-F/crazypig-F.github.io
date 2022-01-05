@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>分类 - Web</title>
+    <title>并查集</title>
     <link rel="shortcut icon" href="#"/>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
@@ -18,66 +18,151 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
 <link rel="alternate" href="/atom.xml" title="crazypig的博客" type="application/atom+xml">
 </head>
 <body>
     <a id="cover"></a>
     <div id="header">
-    <div class="header" >
+    <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-title"></h1>
-                <h2 class="header-description" id="hitokoto"></h2>
-                <h3 class="header-info" id="hitokotoAuthor"></h3>
-                <!--
-                <h1 class="header-subtitle"></h1>
-                <p class="header-subinfo"></p>
-                -->
+                <h1 class="header-subtitle">并查集</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2022-01-05
+                        </span>
+                        
+                            <span id="/2022/01/05/并查集/" class="leancloud_visitors" data-flag-title="并查集">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/05/并查集/"></span>
+                        </span>  
+                    </p>                 
+                </div>
             </div>
         </div>
-        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
-            <span class="hidden">Scroll Down</span>
-            <i class="scroll-down-icon iconfont icon-return"></i>
-        </a>
+        <canvas id="articleHeaderCanvas"></canvas>
     </div>
 </div>
     <div id="container">
     <div id="content">
-        <div class="articles">
-    
-        <div class="article">
-            <div class="article-title">
-                <a href="/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/">Hexo主题LiveForCode介绍</a>
-                
-                    <span class="article-sticky">置顶</span>
-                
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><p>并查集（Union-find Sets）是一种非常精巧而实用的数据结构，它主要用于处理一些<em>不相交集合</em>的合并问题。一些常见的用途有求连通子图、求最小生成树的 Kruskal 算法和求最近公共祖先等。</p>
+<p>并查集的基本操作有三个：</p>
+<ol>
+<li>makeSet(s)：建立一个新的并查集，其中包含 s 个单元素集合。</li>
+<li>unionSet(x, y)：把元素 x 和元素 y 所在的集合合并，要求 x 和 y 所在的集合不相交，如果相交则不合并。</li>
+<li>find(x)：找到元素 x 所在的集合的代表，该操作也可以用于判断两个元素是否位于同一个集合，只要将它们各自的代表比较一下就可以了。</li>
+</ol>
+<p>并查集的逻辑结构用树来表示</p>
+<p><img src="http://cdn.crazypig.top/image-20211219195413491.png" alt="image-20211219195413491"></p>
+<p>用它的物理结构用树的双亲表示法来存储</p>
+<table>
+<thead>
+<tr>
+<th>数组下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>元素</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>e</td>
+<td>f</td>
+<td>g</td>
+</tr>
+<tr>
+<td>双亲下标</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>并查集的数据结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_SIZE 100<span class="comment">//宏定义树中结点的最大数量</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;<span class="comment">//宏定义树结构中数据类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Snode</span>&#123;</span></span><br><span class="line">    TElemType data;<span class="comment">//树中结点的数据类型</span></span><br><span class="line">    <span class="keyword">int</span> parent;<span class="comment">//结点的父结点在数组中的位置下标</span></span><br><span class="line">&#125;PTNode;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PTNode tnode[MAX_SIZE];<span class="comment">//存放树中所有结点</span></span><br><span class="line">    <span class="keyword">int</span> n;<span class="comment">//根的位置下标和结点数</span></span><br><span class="line">&#125;PTree;</span><br></pre></td></tr></table></figure>
+
+<p>并查集并操作的优化：每次将小树并到大树中去，可以减少合并后的树的层数，提高性能</p>
+<p>并查集查的优化：路径压缩，路径压缩就是在每次查找时，令查找路径上的每个节点都直接指向根节点</p>
+<p><img src="http://cdn.crazypig.top/image-20211219200913080.png" alt="image-20211219200913080"></p>
+<p>并查集的应用</p>
+<ol>
+<li>求图的连通分量</li>
+<li>求图中是否有环</li>
+<li>最小生成树的 Kruskal 算法</li>
+</ol>
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg" alt="crazypig">
             </div>
-            <div class="article-abstract">
-                
-                    摘要：Hexo主题LiveForCode介绍.
-                    <a href="/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/">阅读全文</a>
-                
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：crazypig
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2022/01/05/%E5%B9%B6%E6%9F%A5%E9%9B%86/" target="_blank">并查集</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
             </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-01-01
-                </span>
-                
-                    <span id="/2022/01/01/Hexo主题LiveForCode介绍/" class="leancloud_visitors" data-flag-title="Hexo主题LiveForCode介绍">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/01/Hexo主题LiveForCode介绍/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
+            <div style="clear: both;"></div>
         </div>
-    
+    </div>
+    <div class="article-footer">
+        
+            <div class="category">
+                分类：
+                
+                    <a href="/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                
+            </div>
+        
+        
+            <div class="tag">
+                标签：
+                
+                    <a href="/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                
+                    <a href="/tag/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+                
+            </div>
+        
+        <div class="article-prev-next">
+            
+                <a href="/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="prev-prefix">« </a> 上一篇：    <a href="/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="发布于 2022-01-05 03:11">操作系统基本概念</a>
+                <br>
+            
+            
+        </div>
+    </div>
     
 </div>
 

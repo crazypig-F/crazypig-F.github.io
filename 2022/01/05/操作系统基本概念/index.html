@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>testarticle</title>
+    <title>操作系统基本概念</title>
     <link rel="shortcut icon" href="#"/>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
@@ -33,19 +33,19 @@
     <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">testarticle</h1>
+                <h1 class="header-subtitle">操作系统基本概念</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
                             <i class="iconfont icon-time"></i> 发表时间：2022-01-05
                         </span>
                         
-                            <span id="/2022/01/05/testarticle/" class="leancloud_visitors" data-flag-title="testarticle">
+                            <span id="/2022/01/05/操作系统基本概念/" class="leancloud_visitors" data-flag-title="操作系统基本概念">
                                 <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                             </span>
                         
                         <span>
-                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/05/testarticle/"></span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/05/操作系统基本概念/"></span>
                         </span>  
                     </p>                 
                 </div>
@@ -59,62 +59,28 @@
         <div id="article">
     <div class="toc"></div>
     <div class="article-body">
-        <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><p>并查集（Union-find Sets）是一种非常精巧而实用的数据结构，它主要用于处理一些<em>不相交集合</em>的合并问题。一些常见的用途有求连通子图、求最小生成树的 Kruskal 算法和求最近公共祖先等。</p>
-<p>并查集的基本操作有三个：</p>
-<ol>
-<li>makeSet(s)：建立一个新的并查集，其中包含 s 个单元素集合。</li>
-<li>unionSet(x, y)：把元素 x 和元素 y 所在的集合合并，要求 x 和 y 所在的集合不相交，如果相交则不合并。</li>
-<li>find(x)：找到元素 x 所在的集合的代表，该操作也可以用于判断两个元素是否位于同一个集合，只要将它们各自的代表比较一下就可以了。</li>
+        <h1 id="操作系统基本概念"><a href="#操作系统基本概念" class="headerlink" title="操作系统基本概念"></a>操作系统基本概念</h1><h2 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h2><ul>
+<li>并行指两个或多个事件在同一时刻发生</li>
+<li>并发指两个或多个事件在同一时间间隔发生</li>
+</ul>
+<h2 id="异步性"><a href="#异步性" class="headerlink" title="异步性"></a>异步性</h2><ul>
+<li>异步性就是描述进程以不可预知的速度走走停停、何时开始、何时暂停、何时结束不可预知的性质</li>
+</ul>
+<h2 id="同步与异步-阻塞与非阻塞"><a href="#同步与异步-阻塞与非阻塞" class="headerlink" title="同步与异步 阻塞与非阻塞"></a>同步与异步 阻塞与非阻塞</h2><ol>
+<li>老王用水壶煮水，并且<em>站在那里</em>，<em>不管水开没开，每隔一定时间看看水开了没</em>。－<strong>同步阻塞</strong></li>
+<li>老王还是用水壶煮水，不再傻傻的站在那里看水开，<em>跑去寝室上网</em>，<em>但是还是会每隔一段时间过来看看水开了没有，水没有开就走人</em>。－<strong>同步非阻塞</strong></li>
+<li>老王这次使用高大上的响水壶来煮水，<em>站在那里</em>，<em>但是不会再每隔一段时间去看水开，而是等水开了，水壶会自动的通知他</em>。－<strong>异步阻塞</strong></li>
+<li>老王还是使用响水壶煮水，<em>跑到客厅上网去</em>，等着响水壶<em>自己把水煮熟了以后通知他</em>。－<strong>异步非阻塞</strong></li>
 </ol>
-<p>并查集的逻辑结构用树来表示</p>
-<p><img src="http://cdn.crazypig.top/image-20211219195413491.png" alt="image-20211219195413491"></p>
-<p>用它的物理结构用树的双亲表示法来存储</p>
-<table>
-<thead>
-<tr>
-<th>数组下标</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>元素</td>
-<td>a</td>
-<td>b</td>
-<td>c</td>
-<td>d</td>
-<td>e</td>
-<td>f</td>
-<td>g</td>
-</tr>
-<tr>
-<td>双亲下标</td>
-<td>-1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>-1</td>
-<td>4</td>
-<td>5</td>
-</tr>
-</tbody></table>
-<p>并查集的数据结构</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_SIZE 100<span class="comment">//宏定义树中结点的最大数量</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElemType;<span class="comment">//宏定义树结构中数据类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Snode</span>&#123;</span></span><br><span class="line">    TElemType data;<span class="comment">//树中结点的数据类型</span></span><br><span class="line">    <span class="keyword">int</span> parent;<span class="comment">//结点的父结点在数组中的位置下标</span></span><br><span class="line">&#125;PTNode;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PTNode tnode[MAX_SIZE];<span class="comment">//存放树中所有结点</span></span><br><span class="line">    <span class="keyword">int</span> n;<span class="comment">//根的位置下标和结点数</span></span><br><span class="line">&#125;PTree;</span><br></pre></td></tr></table></figure>
-
-<p>并查集并操作的优化：每次将小树并到大树中去，可以减少合并后的树的层数，提高性能</p>
-<p>并查集查的优化：路径压缩，路径压缩就是在每次查找时，令查找路径上的每个节点都直接指向根节点</p>
-<p><img src="http://cdn.crazypig.top/image-20211219200913080.png" alt="image-20211219200913080"></p>
-<p>并查集的应用</p>
-<ol>
-<li>求图的连通分量</li>
-<li>求图中是否有环</li>
-<li>最小生成树的 Kruskal 算法</li>
-</ol>
+<ul>
+<li><p><strong>同步和异步</strong></p>
+<p>同步就是烧开水，需要自己去轮询（每隔一段时间去看看水开了没），异步就是水开了，然后水壶会通知你水已经开了，你可以回来处理这些开水了。<br>同步和异步是相对于操作结果来说，会不会等待结果返回。</p>
+</li>
+<li><p><strong>阻塞和非阻塞</strong></p>
+<p>阻塞就是说在煮水的过程中，你不可以去干其他的事情，非阻塞就是在同样的情况下，可以同时去干其他的事情。阻塞和非阻塞是相对于线程是否被阻塞。</p>
+</li>
+</ul>
+<p>其实，这两者存在本质的区别，它们的修饰对象是不同的。阻塞和非阻塞是指进程访问的数据如果尚未就绪，进程是否需要等待，简单说这相当于函数内部的实现区别，也就是未就绪时是直接返回还是等待就绪。<br>而同步和异步是指访问数据的机制,同步一般指主动请求并等待I/O操作完毕的方式,当数据就绪后在读写的时候必须阻塞,异步则指主动请求数据后便可以继续处理其它任务,随后等待I/O,操作完毕的通知,这可以使进程在数据读写时也不阻塞。</p>
 
         <p class="suffix-end">__END__</p>
         <div class="suffix-box">
@@ -124,7 +90,7 @@
             <div class="suffix-box-right">
                 <span class="suffix-box-title">文章作者</span>：crazypig
                 <br>
-                <span class="suffix-box-title">文章出处</span>：<a href="/2022/01/05/testarticle/" target="_blank">testarticle</a>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_blank">操作系统基本概念</a>
                 <br>
                 <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
                 <br>
@@ -141,7 +107,7 @@
             <div class="category">
                 分类：
                 
-                    <a href="/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    <a href="/category/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                 
             </div>
         
@@ -149,16 +115,14 @@
             <div class="tag">
                 标签：
                 
-                    <a href="/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                
-                    <a href="/tag/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+                    <a href="/tag/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                 
             </div>
         
         <div class="article-prev-next">
             
             
-                <a href="/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/" class="next-prefix">» </a> 下一篇：    <a href="/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/" title="发布于 2022-01-01 12:00">Hexo主题LiveForCode介绍</a>
+                <a href="/2022/01/05/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="next-prefix">» </a> 下一篇：    <a href="/2022/01/05/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="发布于 2022-01-05 03:08">并查集</a>
             
         </div>
     </div>
