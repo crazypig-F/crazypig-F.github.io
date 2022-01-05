@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Live For Code</title>
+  <title>crazypig的博客</title>
   
   
-  <link href="https://www.notes.worstone.cn/atom.xml" rel="self"/>
+  <link href="https://www.crazypig.top/atom.xml" rel="self"/>
   
-  <link href="https://www.notes.worstone.cn/"/>
+  <link href="https://www.crazypig.top/"/>
   <updated>2022-01-05T06:19:15.000Z</updated>
-  <id>https://www.notes.worstone.cn/</id>
+  <id>https://www.crazypig.top/</id>
   
   <author>
-    <name>Live For Code</name>
+    <name>crazypig</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>testarticle</title>
-    <link href="https://www.notes.worstone.cn/2022/01/05/testarticle/"/>
-    <id>https://www.notes.worstone.cn/2022/01/05/testarticle/</id>
+    <link href="https://www.crazypig.top/2022/01/05/testarticle/"/>
+    <id>https://www.crazypig.top/2022/01/05/testarticle/</id>
     <published>2022-01-05T06:19:15.000Z</published>
     <updated>2022-01-05T06:19:15.000Z</updated>
     
@@ -33,19 +33,19 @@
     
     
     
-    <category term="数据结构与算法" scheme="https://www.notes.worstone.cn/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="数据结构" scheme="https://www.notes.worstone.cn/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="https://www.crazypig.top/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-    <category term="并查集" scheme="https://www.notes.worstone.cn/tag/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    <category term="并查集" scheme="https://www.crazypig.top/tag/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
   </entry>
   
   <entry>
     <title>Hexo主题LiveForCode介绍</title>
-    <link href="https://www.notes.worstone.cn/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/"/>
-    <id>https://www.notes.worstone.cn/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/</id>
+    <link href="https://www.crazypig.top/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://www.crazypig.top/2022/01/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/</id>
     <published>2021-12-31T16:00:00.000Z</published>
     <updated>2021-12-31T16:00:00.000Z</updated>
     
@@ -56,10 +56,10 @@
     
     
     
-    <category term="Web" scheme="https://www.notes.worstone.cn/category/Web/"/>
+    <category term="Web" scheme="https://www.crazypig.top/category/Web/"/>
     
     
-    <category term="Hexo" scheme="https://www.notes.worstone.cn/tag/Hexo/"/>
+    <category term="Hexo" scheme="https://www.crazypig.top/tag/Hexo/"/>
     
   </entry>
   
