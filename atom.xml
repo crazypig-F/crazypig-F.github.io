@@ -6,7 +6,7 @@
   <link href="https://www.crazypig.top/atom.xml" rel="self"/>
   
   <link href="https://www.crazypig.top/"/>
-  <updated>2022-01-05T08:59:54.000Z</updated>
+  <updated>2022-01-06T03:18:09.000Z</updated>
   <id>https://www.crazypig.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>删除链表中重复元素</title>
+    <link href="https://www.crazypig.top/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/"/>
+    <id>https://www.crazypig.top/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/</id>
+    <published>2022-01-06T03:18:09.000Z</published>
+    <updated>2022-01-06T03:18:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="83-删除排序链表中的重复元素"><a href="#83-删除排序链表中的重复元素" class="headerlink" title="83. 删除排序链表中的重复元素"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h1><p>难度简单706收藏分享切换为英文接收动态反馈</p><p>存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p><p>返回同样按升序排列的结果链表。</p><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/01/04/list1.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,1,2]</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/01/04/list2.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,1,2,3,3]</span><br><span class="line">输出：[1,2,3]</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>判断下一个结点是否和当前结点相等，如果相等，当前结点就指向下一个结点的下一个结点</p><h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">Val  <span class="keyword">int</span></span><br><span class="line">Next *ListNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deleteDuplicates</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line">    &#125;</span><br><span class="line">    p := head</span><br><span class="line">    q := p.Next</span><br><span class="line">    <span class="keyword">for</span> q != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> q.Val == p.Val &#123;</span><br><span class="line">            p.Next = q.Next</span><br><span class="line">            q = q.Next</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            p = p.Next</span><br><span class="line">            q = q.Next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;83-删除排序链表中的重复元素&quot;&gt;&lt;a href=&quot;#83-删除排序链表中的重复元素&quot; class=&quot;headerlink&quot; title=&quot;83. 删除排序链表中的重复元素&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problem</summary>
+      
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="链表" scheme="https://www.crazypig.top/tag/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>爬楼梯</title>
