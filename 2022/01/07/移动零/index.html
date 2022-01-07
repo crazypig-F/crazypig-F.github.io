@@ -72,6 +72,10 @@
 </ol>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">moveZeroes</span><span class="params">(nums []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    i, j := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j &lt; <span class="built_in">len</span>(nums) &#123;</span><br><span class="line">        <span class="keyword">for</span> j &lt; <span class="built_in">len</span>(nums) &amp;&amp; nums[j] == <span class="number">0</span> &#123;</span><br><span class="line">            j++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> j &lt; <span class="built_in">len</span>(nums) &amp;&amp; nums[j] != <span class="number">0</span> &#123;</span><br><span class="line">            nums[i] = nums[j]</span><br><span class="line">            i++</span><br><span class="line">            j++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i &lt; <span class="built_in">len</span>(nums) &#123;</span><br><span class="line">        nums[i] = <span class="number">0</span></span><br><span class="line">        i++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>时间复杂度O(n)</p>
+<p>空间复杂度O(1)</p>
+</blockquote>
 
         <p class="suffix-end">__END__</p>
         <div class="suffix-box">
@@ -115,6 +119,9 @@
             </div>
         
         <div class="article-prev-next">
+            
+                <a href="/2022/01/07/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/" class="prev-prefix">« </a> 上一篇：    <a href="/2022/01/07/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/" title="发布于 2022-01-07 03:15">合并两个有序数组</a>
+                <br>
             
             
                 <a href="/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/" class="next-prefix">» </a> 下一篇：    <a href="/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/" title="发布于 2022-01-06 11:18">删除链表中重复元素</a>
