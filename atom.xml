@@ -6,7 +6,7 @@
   <link href="https://www.crazypig.top/atom.xml" rel="self"/>
   
   <link href="https://www.crazypig.top/"/>
-  <updated>2022-01-08T08:07:16.000Z</updated>
+  <updated>2022-01-13T09:29:26.000Z</updated>
   <id>https://www.crazypig.top/</id>
   
   <author>
@@ -15,6 +15,92 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字符串解码</title>
+    <link href="https://www.crazypig.top/2022/01/13/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/"/>
+    <id>https://www.crazypig.top/2022/01/13/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/</id>
+    <published>2022-01-13T09:29:26.000Z</published>
+    <updated>2022-01-13T09:29:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="394-字符串解码"><a href="#394-字符串解码" class="headerlink" title="394. 字符串解码"></a><a href="https://leetcode-cn.com/problems/decode-string/">394. 字符串解码</a></h1><p>难度中等</p><p>给定一个经过编码的字符串，返回它解码后的字符串。</p><p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <em>encoded_string</em> 正好重复 <em>k</em> 次。注意 <em>k</em> 保证为正整数。</p><p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p><p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <em>k</em> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p><p><strong>示例 1：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">输出：&quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure><p><strong>示例 4：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>使用一个栈来保存状态，当遇到数字，字母，左括号入栈，遇到右括号出栈</li><li>遇到右括号，出栈的数据包括字母，左括号，左括号前的数字</li><li>按照数字$\times$字母的规则将重新组合的字母压入栈</li><li>直至遍历完整个字符串，最后将栈中的数据返回就得到了结果</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;strconv&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(stack *[]<span class="keyword">string</span>, x <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">*stack = <span class="built_in">append</span>(*stack, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">(stack *[]<span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">x := (*stack)[<span class="built_in">len</span>(*stack)<span class="number">-1</span>]</span><br><span class="line">*stack = (*stack)[:<span class="built_in">len</span>(*stack)<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">empty</span><span class="params">(stack []<span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(stack) == <span class="number">0</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getNum</span><span class="params">(s <span class="keyword">string</span>, index <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">last := index</span><br><span class="line"><span class="keyword">for</span> i := index; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line"><span class="keyword">if</span> s[i] != <span class="string">&#x27;[&#x27;</span> &#123;</span><br><span class="line">last++</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> s[index:last], last</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">decodeString</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">index := <span class="number">0</span></span><br><span class="line">stack := <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> index &lt; <span class="built_in">len</span>(s) &#123;</span><br><span class="line"><span class="keyword">if</span> s[index] &gt;= <span class="string">&#x27;1&#x27;</span> &amp;&amp; s[index] &lt;= <span class="string">&#x27;9&#x27;</span> &#123;</span><br><span class="line">x, last := getNum(s, index)</span><br><span class="line">push(&amp;stack, x)</span><br><span class="line">index = last</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> s[index] == <span class="string">&#x27;[&#x27;</span> &#123;</span><br><span class="line">push(&amp;stack, s[index:index+<span class="number">1</span>])</span><br><span class="line">index++</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> s[index] == <span class="string">&#x27;]&#x27;</span> &#123;</span><br><span class="line">alpha := <span class="string">&quot;&quot;</span></span><br><span class="line">x := pop(&amp;stack)</span><br><span class="line"><span class="keyword">for</span> x != <span class="string">&quot;[&quot;</span> &#123;</span><br><span class="line">alpha = x + alpha</span><br><span class="line">x = pop(&amp;stack)</span><br><span class="line">&#125;</span><br><span class="line">sNum := pop(&amp;stack)</span><br><span class="line">num, _ := strconv.Atoi(sNum)</span><br><span class="line">nAlpha := <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; num; i++ &#123;</span><br><span class="line">nAlpha += alpha</span><br><span class="line">&#125;</span><br><span class="line">push(&amp;stack, nAlpha)</span><br><span class="line">index++</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">push(&amp;stack, s[index:index+<span class="number">1</span>])</span><br><span class="line">index++</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">res := <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> !empty(stack) &#123;</span><br><span class="line">x := pop(&amp;stack)</span><br><span class="line">res = x + res</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>时间复杂度O(n)</p><p>空间复杂度O(n)</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;394-字符串解码&quot;&gt;&lt;a href=&quot;#394-字符串解码&quot; class=&quot;headerlink&quot; title=&quot;394. 字符串解码&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/decode-string/&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="leetcode" scheme="https://www.crazypig.top/tag/leetcode/"/>
+    
+    <category term="中等" scheme="https://www.crazypig.top/tag/%E4%B8%AD%E7%AD%89/"/>
+    
+    <category term="字符串" scheme="https://www.crazypig.top/tag/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="栈" scheme="https://www.crazypig.top/tag/%E6%A0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>平衡二叉树</title>
+    <link href="https://www.crazypig.top/2022/01/12/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>https://www.crazypig.top/2022/01/12/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</id>
+    <published>2022-01-12T05:56:49.000Z</published>
+    <updated>2022-01-12T05:56:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110. 平衡二叉树"></a><a href="https://leetcode-cn.com/problems/balanced-binary-tree/">110. 平衡二叉树</a></h1><p>难度简单</p><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p><p>本题中，一棵高度平衡二叉树定义为：</p><blockquote><p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1 。</p></blockquote><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2020/10/06/balance_1.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,9,20,null,null,15,7]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><p><img src="https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,2,3,3,null,null,4,4]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>判断左右子树之差的绝对值是否大于1，如果大于1则返回-1，否则返回左右子树的最大深度</li><li>检查返回的深度是否为-1，-1代表不满足平衡性</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TreeNode <span class="keyword">struct</span> &#123;</span><br><span class="line">Val   <span class="keyword">int</span></span><br><span class="line">Left  *TreeNode</span><br><span class="line">Right *TreeNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line"><span class="keyword">return</span> a</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkDepth</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line">left := checkDepth(root.Left)</span><br><span class="line">right := checkDepth(root.Right)</span><br><span class="line"><span class="keyword">if</span> left == <span class="number">-1</span> || right == <span class="number">-1</span> || left-right &lt; <span class="number">-1</span> || left-right &gt; <span class="number">1</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> max(left, right) + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isBalanced</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line"><span class="keyword">return</span> checkDepth(root) != <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;110-平衡二叉树&quot;&gt;&lt;a href=&quot;#110-平衡二叉树&quot; class=&quot;headerlink&quot; title=&quot;110. 平衡二叉树&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/balanced-binary-</summary>
+      
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="leetcode" scheme="https://www.crazypig.top/tag/leetcode/"/>
+    
+    <category term="简单" scheme="https://www.crazypig.top/tag/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="二叉树" scheme="https://www.crazypig.top/tag/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对称二叉树</title>
+    <link href="https://www.crazypig.top/2022/01/12/%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>https://www.crazypig.top/2022/01/12/%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</id>
+    <published>2022-01-12T05:31:50.000Z</published>
+    <updated>2022-01-12T05:31:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="101-对称二叉树"><a href="#101-对称二叉树" class="headerlink" title="101. 对称二叉树"></a><a href="https://leetcode-cn.com/problems/symmetric-tree/">101. 对称二叉树</a></h1><p>难度简单</p><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,2,3,4,4,3]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree2.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,2,null,3,null,3]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>判断左右子树的值是否相等，不相等返回false，相等则进行下一步</li><li>递归判断左子树的左孩子和右子树的右孩子，左子树的右孩子和右子树的左孩子是否相等</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TreeNode <span class="keyword">struct</span> &#123;</span><br><span class="line">Val   <span class="keyword">int</span></span><br><span class="line">Left  *TreeNode</span><br><span class="line">Right *TreeNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isSymmetric</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> check(root.Left, root.Right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(left, right *TreeNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> left == <span class="literal">nil</span> &amp;&amp; right == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> left ==<span class="literal">nil</span> || right == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> left.Val != right.Val &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> check(left.Left, right.Right) &amp;&amp; check(left.Right, right.Left)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;101-对称二叉树&quot;&gt;&lt;a href=&quot;#101-对称二叉树&quot; class=&quot;headerlink&quot; title=&quot;101. 对称二叉树&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/symmetric-tree/&quot;</summary>
+      
+    
+    
+    
+    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="leetcode" scheme="https://www.crazypig.top/tag/leetcode/"/>
+    
+    <category term="简单" scheme="https://www.crazypig.top/tag/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="二叉树" scheme="https://www.crazypig.top/tag/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>合并两个有序链表</title>
@@ -214,86 +300,6 @@
     <category term="数组" scheme="https://www.crazypig.top/tag/%E6%95%B0%E7%BB%84/"/>
     
     <category term="简单" scheme="https://www.crazypig.top/tag/%E7%AE%80%E5%8D%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>删除链表中重复元素</title>
-    <link href="https://www.crazypig.top/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/"/>
-    <id>https://www.crazypig.top/2022/01/06/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/</id>
-    <published>2022-01-06T03:18:09.000Z</published>
-    <updated>2022-01-06T03:18:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="83-删除排序链表中的重复元素"><a href="#83-删除排序链表中的重复元素" class="headerlink" title="83. 删除排序链表中的重复元素"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h1><p>难度简单</p><p>存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p><p>返回同样按升序排列的结果链表。</p><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/01/04/list1.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,1,2]</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><p><img src="https://assets.leetcode.com/uploads/2021/01/04/list2.jpg" alt="img"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,1,2,3,3]</span><br><span class="line">输出：[1,2,3]</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>判断下一个结点是否和当前结点相等，如果相等，当前结点就指向下一个结点的下一个结点</p><h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">Val  <span class="keyword">int</span></span><br><span class="line">Next *ListNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deleteDuplicates</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line">    &#125;</span><br><span class="line">    p := head</span><br><span class="line">    q := p.Next</span><br><span class="line">    <span class="keyword">for</span> q != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> q.Val == p.Val &#123;</span><br><span class="line">            p.Next = q.Next</span><br><span class="line">            q = q.Next</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            p = p.Next</span><br><span class="line">            q = q.Next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>时间复杂度O(n)</p><p>空间复杂度O(1)</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;83-删除排序链表中的重复元素&quot;&gt;&lt;a href=&quot;#83-删除排序链表中的重复元素&quot; class=&quot;headerlink&quot; title=&quot;83. 删除排序链表中的重复元素&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problem</summary>
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="leetcode" scheme="https://www.crazypig.top/tag/leetcode/"/>
-    
-    <category term="链表" scheme="https://www.crazypig.top/tag/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="简单" scheme="https://www.crazypig.top/tag/%E7%AE%80%E5%8D%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬楼梯</title>
-    <link href="https://www.crazypig.top/2022/01/05/%E7%88%AC%E6%A5%BC%E6%A2%AF/"/>
-    <id>https://www.crazypig.top/2022/01/05/%E7%88%AC%E6%A5%BC%E6%A2%AF/</id>
-    <published>2022-01-05T08:59:54.000Z</published>
-    <updated>2022-01-05T08:59:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a><a href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>难度简单</p><p>假设你正在爬楼梯。需要 <em>n</em> 阶你才能到达楼顶。</p><p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p><p><strong>注意：</strong>给定 <em>n</em> 是一个正整数。</p><p><strong>示例 1：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入： 2</span><br><span class="line">输出： 2</span><br><span class="line">解释： 有两种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶</span><br><span class="line">2.  2 阶</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入： 3</span><br><span class="line">输出： 3</span><br><span class="line">解释： 有三种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶 + 1 阶</span><br><span class="line">2.  1 阶 + 2 阶</span><br><span class="line">3.  2 阶 + 1 阶</span><br></pre></td></tr></table></figure><h2 id="递推公式"><a href="#递推公式" class="headerlink" title="递推公式"></a>递推公式</h2><p>$$<br>f(n) = \begin{cases}<br>1 &amp; n = 1 \<br>2 &amp; n = 2 \<br>f(n-1) + f(n-2) &amp; n \geq 3<br>\end{cases}<br>$$</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">climbStairs</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> n == <span class="number">1</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">a, b := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">3</span>; i &lt;= n; i++ &#123;</span><br><span class="line">c := a + b</span><br><span class="line">a, b = b, c</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>  b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>时间复杂度O(n)</p><p>空间复杂度O(1)</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;70-爬楼梯&quot;&gt;&lt;a href=&quot;#70-爬楼梯&quot; class=&quot;headerlink&quot; title=&quot;70. 爬楼梯&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/climbing-stairs/&quot;&gt;70. 爬楼梯</summary>
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.crazypig.top/category/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="leetcode" scheme="https://www.crazypig.top/tag/leetcode/"/>
-    
-    <category term="递归" scheme="https://www.crazypig.top/tag/%E9%80%92%E5%BD%92/"/>
-    
-    <category term="简单" scheme="https://www.crazypig.top/tag/%E7%AE%80%E5%8D%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统基本概念</title>
-    <link href="https://www.crazypig.top/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <id>https://www.crazypig.top/2022/01/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</id>
-    <published>2022-01-05T07:11:48.000Z</published>
-    <updated>2022-01-05T07:11:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="操作系统基本概念"><a href="#操作系统基本概念" class="headerlink" title="操作系统基本概念"></a>操作系统基本概念</h1><h2 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h2><ul><li>并行指两个或多个事件在同一时刻发生</li><li>并发指两个或多个事件在同一时间间隔发生</li></ul><h2 id="异步性"><a href="#异步性" class="headerlink" title="异步性"></a>异步性</h2><ul><li>异步性就是描述进程以不可预知的速度走走停停、何时开始、何时暂停、何时结束不可预知的性质</li></ul><h2 id="同步与异步-阻塞与非阻塞"><a href="#同步与异步-阻塞与非阻塞" class="headerlink" title="同步与异步 阻塞与非阻塞"></a>同步与异步 阻塞与非阻塞</h2><ol><li>老王用水壶煮水，并且<em>站在那里</em>，<em>不管水开没开，每隔一定时间看看水开了没</em>。－<strong>同步阻塞</strong></li><li>老王还是用水壶煮水，不再傻傻的站在那里看水开，<em>跑去寝室上网</em>，<em>但是还是会每隔一段时间过来看看水开了没有，水没有开就走人</em>。－<strong>同步非阻塞</strong></li><li>老王这次使用高大上的响水壶来煮水，<em>站在那里</em>，<em>但是不会再每隔一段时间去看水开，而是等水开了，水壶会自动的通知他</em>。－<strong>异步阻塞</strong></li><li>老王还是使用响水壶煮水，<em>跑到客厅上网去</em>，等着响水壶<em>自己把水煮熟了以后通知他</em>。－<strong>异步非阻塞</strong></li></ol><ul><li><p><strong>同步和异步</strong></p><p>同步就是烧开水，需要自己去轮询（每隔一段时间去看看水开了没），异步就是水开了，然后水壶会通知你水已经开了，你可以回来处理这些开水了。<br>同步和异步是相对于操作结果来说，会不会等待结果返回。</p></li><li><p><strong>阻塞和非阻塞</strong></p><p>阻塞就是说在煮水的过程中，你不可以去干其他的事情，非阻塞就是在同样的情况下，可以同时去干其他的事情。阻塞和非阻塞是相对于线程是否被阻塞。</p></li></ul><p>其实，这两者存在本质的区别，它们的修饰对象是不同的。阻塞和非阻塞是指进程访问的数据如果尚未就绪，进程是否需要等待，简单说这相当于函数内部的实现区别，也就是未就绪时是直接返回还是等待就绪。<br>而同步和异步是指访问数据的机制,同步一般指主动请求并等待I/O操作完毕的方式,当数据就绪后在读写的时候必须阻塞,异步则指主动请求数据后便可以继续处理其它任务,随后等待I/O,操作完毕的通知,这可以使进程在数据读写时也不阻塞。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;操作系统基本概念&quot;&gt;&lt;a href=&quot;#操作系统基本概念&quot; class=&quot;headerlink&quot; title=&quot;操作系统基本概念&quot;&gt;&lt;/a&gt;操作系统基本概念&lt;/h1&gt;&lt;h2 id=&quot;并发与并行&quot;&gt;&lt;a href=&quot;#并发与并行&quot; class=&quot;headerlink</summary>
-      
-    
-    
-    
-    <category term="操作系统" scheme="https://www.crazypig.top/category/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-    <category term="操作系统" scheme="https://www.crazypig.top/tag/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
